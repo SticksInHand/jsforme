@@ -10,6 +10,7 @@ window.onload = function(){
             var img = new Image();
             img.src = oImg[0].src = this.src.replace(/small/,"big");
             oDiv.style.display = "block";
+            img.complete ? oDiv.style.display = "none" : img.onload = function(){oDiv.style.display = "none"};
         }
     }
 };
