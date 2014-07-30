@@ -9,6 +9,7 @@ window.onload = function(){
         oImg[i].onmouseover = function(){
             var img = new Image();
             img.src = oImg[0].src = this.src.replace(/small/,"big");
+            oDiv.style.display = "block";
         }
     }
 };
