@@ -29,7 +29,7 @@ window.onload = function(){
     var oNav = get.byId("nav");
     var oLi = get.byTagName("li",document);
     var aSubNav = get.byClass("subnav",oNav);
-    var oSubNav = oArrow = null;
+    var oSubNav = oArrow = timer = null;
 
     for(var i = 0;i<oLi.length;i++){
         oLi[i].onmouseover = function(){
@@ -45,6 +45,22 @@ window.onload = function(){
             }
             oNav.offsetWidth - this.offsetLeft > oSubNav[0].offsetWidth ? oSubNav[0].style.left = this.offsetLeft + "px" : oSubNav[0].style.right = 0;
 
+            //给小箭头定位
+            oArrow[0].style.left = this.offsetLeft - oSubNav[0].offsetLeft +50+ "px";
+            clearTimeout(timer);
+            oSubNav[0].onmouseover = function(event){
+                (event||window.event).cancelBubble = true;
+                clearTimeout(timer);
+            }
+
+        };
+
+        oLi[i].onmouseout = function(){
+            oSubNav = get.byClass("subnav",this);
+
+            timer = setTimeout(function(){
+                oSubNav[0].style.display = "none";
+            },300);
 
         }
     }
